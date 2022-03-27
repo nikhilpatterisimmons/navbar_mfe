@@ -14,3 +14,15 @@ export const LogoWrapper = styled.div`
   display: flex;
   align-items: center;
 `;
+
+export const NavItem = styled.div`
+  cursor: pointer;
+  margin-left: 100px;
+  height: 100%;
+  color: rgb(255, 255, 255);
+  border: none;
+  font-size: 16px;
+  font-family: 'Lato';
+  display: flex;
+  align-items: center;
+`;
