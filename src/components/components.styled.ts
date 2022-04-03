@@ -26,3 +26,11 @@ export const NavItem = styled.div`
   display: flex;
   align-items: center;
 `;
+
+export const StudyText = styled.div`
+  display: flex;
+  color: aqua;
+  font-size: 11px;
+  margin-left: auto;
+  margin-right: 16px;
+`;

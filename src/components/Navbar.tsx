@@ -1,7 +1,13 @@
 import { NavLink, BrowserRouter } from "react-router-dom";
-import { LogoWrapper, NavigationBar, NavItem } from "./components.styled";
+import {
+  LogoWrapper,
+  NavigationBar,
+  NavItem,
+  StudyText,
+} from "./components.styled";
 import MriSimmonsLogo from "./images/MriSimmonsLogo";
 import styled from "styled-components";
+import { useEffect, useState } from "react";
 
 const StyleNavLink = styled(NavLink)`
   color: white;
@@ -9,7 +15,16 @@ const StyleNavLink = styled(NavLink)`
 `;
 
 const Navbar = () => {
-  // const navigate = useNavigate();
+  const [study, setStudy] = useState<string>("");
+
+  useEffect(() => {
+    window.addEventListener("eventFromCrtb", (customEvent: CustomEvent) => {
+      const { detail } = customEvent;
+      console.log("inside this", detail);
+      setStudy(detail?.sd);
+    });
+  }, []);
+
   return (
     <BrowserRouter>
       <NavigationBar>
@@ -25,6 +40,7 @@ const Navbar = () => {
         <NavItem>
           <StyleNavLink to="datahub">Datahub</StyleNavLink>
         </NavItem>
+        <StudyText>{study}</StudyText>
       </NavigationBar>
     </BrowserRouter>
   );
