@@ -1,5 +1,5 @@
 import { NavLink, BrowserRouter } from "react-router-dom";
-import { LogoWrapper, NavigationBar, NavItem } from "./components.styled";
+import { AlertHeader, LogoWrapper, NavigationBar, NavItem } from "./components.styled";
 import MriSimmonsLogo from "./images/MriSimmonsLogo";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
@@ -49,8 +49,10 @@ const Navbar = () => {
         onClose={handleClose}
         anchorOrigin={{ vertical: "top", horizontal: "right" }}
       >
-        <Alert onClose={handleClose} severity="info" sx={{ width: "100%" }}>
-          {study}
+        <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
+          <AlertHeader>This is an event from Crosstab Application</AlertHeader>
+          <AlertHeader>This event is captured in NavBar Application</AlertHeader>
+          <div>Updated Study: {study}</div>
         </Alert>
       </Snackbar>
     </BrowserRouter>

@@ -27,10 +27,9 @@ export const NavItem = styled.div`
   align-items: center;
 `;
 
-export const StudyText = styled.div`
-  display: flex;
-  color: aqua;
-  font-size: 11px;
-  margin-left: auto;
-  margin-right: 16px;
+export const AlertHeader = styled.div`
+  color: cornflowerblue;
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 16px;
 `;
