@@ -1,13 +1,9 @@
 import { NavLink, BrowserRouter } from "react-router-dom";
-import {
-  LogoWrapper,
-  NavigationBar,
-  NavItem,
-  StudyText,
-} from "./components.styled";
+import { LogoWrapper, NavigationBar, NavItem } from "./components.styled";
 import MriSimmonsLogo from "./images/MriSimmonsLogo";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
+import { Alert, Snackbar } from "@mui/material";
 
 const StyleNavLink = styled(NavLink)`
   color: white;
@@ -16,14 +12,20 @@ const StyleNavLink = styled(NavLink)`
 
 const Navbar = () => {
   const [study, setStudy] = useState<string>("");
+  const [open, setOpen] = useState<boolean>(false);
 
   useEffect(() => {
     window.addEventListener("eventFromCrtb", (customEvent: CustomEvent) => {
       const { detail } = customEvent;
       console.log("inside this", detail);
       setStudy(detail?.sd);
+      setOpen(true);
     });
   }, []);
+
+  const handleClose = (): void => {
+    setOpen(false);
+  };
 
   return (
     <BrowserRouter>
@@ -40,8 +42,17 @@ const Navbar = () => {
         <NavItem>
           <StyleNavLink to="datahub">Datahub</StyleNavLink>
         </NavItem>
-        <StudyText>{study}</StudyText>
       </NavigationBar>
+      <Snackbar
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      >
+        <Alert onClose={handleClose} severity="info" sx={{ width: "100%" }}>
+          {study}
+        </Alert>
+      </Snackbar>
     </BrowserRouter>
   );
 };
